@@ -13,20 +13,20 @@
     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     state: present
 
-- name: Add Kibana repository.
+- name: Add logstash repository.
   become: true
   copy:
     src: templates/kibana.repo
     dest: /etc/yum.repos.d/kibana.repo
     mode: 0644
 
-- name: stop kibana
+- name: stop logstash
   become: true
   service:
-    name: kibana
+    name: logstash
     state: stoped
   ignore_errors: yes
 
-- name: Install Kibana.
+- name: Install logstash.
   become: true
-  yum: pkg=kibana-oss state=installed
+  yum: pkg=logstash state=installed

@@ -1,0 +1,28 @@
+- name: Include specific Elasticsearch
+  include: logstash-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include specific Elasticsearch
+  include: logstash-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: config.yml
+
+- name: Creates directory for logs
+  file: name={{item}} state=directory owner=logstash group=logstash mode=0755
+  become: true
+  with_items:
+    - "/var/log/logstash"
+
+- name: Enable logstash at startup
+  become: true
+  service:
+    name: logstash
+    state: started
+    enabled: true
+
+- name: Start logstash
+  become: true
+  service:
+    name: logstash
+    state: started

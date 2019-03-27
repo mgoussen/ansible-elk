@@ -1,0 +1,7 @@
+# le nom de l'hôte ou groupe concerné
+---
+- hosts: logstash
+  roles:
+    - ansible-install-logstash
+  vars:
+    service_name: logstash

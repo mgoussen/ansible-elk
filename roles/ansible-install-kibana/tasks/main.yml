@@ -19,14 +19,14 @@
   with_items:
     - "/var/log/kibana"
 
-- name: start kibana
+- name: Enable kibana at startup
   become: true
   service:
     name: kibana
     state: started
     enabled: true
 
-- name: start kibana
+- name: Start kibana
   become: true
   service:
     name: kibana

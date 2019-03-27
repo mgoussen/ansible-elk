@@ -1,6 +1,6 @@
 # le nom de l'hôte ou groupe concerné
 ---
 - include: elasticsearch.yml
-#- include: logstash.yml
+- include: logstash.yml
 - include: kibana.yml
 #- include: curator.yml

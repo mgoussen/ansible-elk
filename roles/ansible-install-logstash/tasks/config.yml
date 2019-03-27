@@ -1,0 +1,12 @@
+---
+- name: Create Logstash configuration files.
+  become: true
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/logstash/conf.d/{{ item }}"
+    owner: logstash
+    group: logstash
+    mode: 0644
+  with_items:
+    - 01-beats-input.conf
+    - 30-elasticsearch-output.conf

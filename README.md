@@ -1,9 +1,15 @@
-Install elasticsearch playbook :
+# Install elasticsearch playbook :
 ansible-galaxy install elastic.elasticsearch,6.6.0
 
 Git :
 https://github.com/elastic/ansible-elasticsearch
 
+# Tutorials Installation kibana needed to create ansible role
+https://www.elastic.co/guide/en/kibana/current/deb.html
+https://www.elastic.co/guide/en/kibana/current/rpm.html
+
+# Tutorial Installation logstash needed to create ansible role
+https://www.elastic.co/guide/en/logstash/current/installing-logstash.html
 
 Run deployments :
 ansible-playbook -i environments/elk elk.yml -u elk
