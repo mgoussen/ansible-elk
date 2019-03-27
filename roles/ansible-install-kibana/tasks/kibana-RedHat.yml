@@ -1,0 +1,32 @@
+---
+- name: Installing required packages
+  yum:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - java-1.8.0-openjdk
+
+- name: Add Elasticsearch GPG key.
+  become: true
+  rpm_key:
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Kibana repository.
+  become: true
+  copy:
+    src: templates/kibana/kibana.repo
+    dest: /etc/yum.repos.d/kibana.repo
+    mode: 0644
+
+- name: stop kibana
+  become: true
+  service:
+    name: kibana
+    state: stoped
+  ignore_errors: yes
+
+- name: Install Kibana.
+  become: true
+  yum: pkg=kibana-oss state=installed

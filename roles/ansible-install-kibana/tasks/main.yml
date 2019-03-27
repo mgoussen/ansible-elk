@@ -1,0 +1,33 @@
+- name: Include specific Elasticsearch
+  include: kibana-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include specific Elasticsearch
+  include: kibana-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Copy kibana file conf
+  become: true
+  template:
+    src: templates/kibana.yml
+    dest: /etc/kibana/kibana.yml
+    mode: 0644
+
+- name: Creates directory for logs
+  file: name={{item}} state=directory owner=kibana group=kibana mode=0755
+  become: true
+  with_items:
+    - "/var/log/kibana"
+
+- name: start kibana
+  become: true
+  service:
+    name: kibana
+    state: started
+    enabled: true
+
+- name: start kibana
+  become: true
+  service:
+    name: kibana
+    state: started

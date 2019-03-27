@@ -2,4 +2,3 @@
 es_instance_name_client_node_1: "elclient1"
 node_data_client_node_1: false
 node_master_client_node_1: false
-es_api_host_client_node_1: 192.168.1.187

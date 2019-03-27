@@ -1,0 +1,32 @@
+---
+- name: Installing required packages
+  become: yes
+  apt: name=openjdk-8-jdk state=present
+
+- name: Debian - Install apt-transport-https to support https APT downloads
+  become: yes
+  apt: name=apt-transport-https state=present
+
+- name: Add Elasticsearch apt key.
+  become: true
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Kibana repository.
+  become: true
+  apt_repository:
+    repo: 'deb https://artifacts.elastic.co/packages/6.x/apt stable main'
+    state: present
+    update_cache: true
+
+- name: stop kibana
+  become: true
+  service:
+    name: kibana
+    state: stoped
+  ignore_errors: yes
+
+- name: Install Kibana.
+  become: yes
+  apt: name=kibana-oss state=present

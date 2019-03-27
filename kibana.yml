@@ -1,0 +1,8 @@
+# le nom de l'hôte ou groupe concerné
+---
+- hosts: kibana
+  roles:
+    - ansible-install-kibana
+  vars:
+    service_name: kibana
+

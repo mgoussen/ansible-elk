@@ -14,7 +14,7 @@
       node.data: "{{node_data_master_node_1}}"
       node.master: "{{node_master_master_node_1}}"
       bootstrap.memory_lock: false
-      network.host: _eth0_
+      network.host: _enp0s3_
     es_scripts: false
     es_templates: false
     es_version_lock: false
@@ -35,7 +35,7 @@
       node.data: "{{node_data_data_node_1}}"
       node.master: "{{node_master_data_node_1}}"
       bootstrap.memory_lock: false
-      network.host: _eth0_
+      network.host: _enp0s3_
     es_scripts: false
     es_templates: false
     es_version_lock: false
@@ -56,7 +56,7 @@
       node.data: "{{node_data_data_node_2}}"
       node.master: "{{node_master_data_node_2}}"
       bootstrap.memory_lock: false
-      network.host: _eth0_
+      network.host: _enp0s3_
     es_scripts: false
     es_templates: false
     es_version_lock: false
@@ -77,7 +77,7 @@
       node.data: "{{node_data_client_node_1}}"
       node.master: "{{node_master_client_node_1}}"
       bootstrap.memory_lock: false
-      network.host: _eth0_
+      network.host: _enp0s3_
     es_scripts: false
     es_templates: false
     es_version_lock: false

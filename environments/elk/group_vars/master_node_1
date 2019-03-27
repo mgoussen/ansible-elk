@@ -2,6 +2,3 @@
 es_instance_name_master_node_1: "elmaster1"
 node_data_master_node_1: false
 node_master_master_node_1: true
-es_api_host_master_node_1: 192.168.1.107
-
-discovery_zen_ping_unicast_hosts: "{{es_api_host_master_node_1}}:9300"

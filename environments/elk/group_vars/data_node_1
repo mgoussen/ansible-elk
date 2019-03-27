@@ -2,4 +2,3 @@
 es_instance_name_data_node_1: "eldata1"
 node_data_data_node_1: true
 node_master_data_node_1: false
-es_api_host_data_node_1: 192.168.1.43
