@@ -23,3 +23,13 @@ All VMs must have installed :
     - python-pip
 
 Otherwise Ansible will not be able to run.
+
+
+######################################################
+##                  Test If running                 ##
+######################################################
+Elasticsearch node master
+http://[URL_NODE_MASTER]:9200/
+
+Kibana
+http://[URL_KIBANA]:5601

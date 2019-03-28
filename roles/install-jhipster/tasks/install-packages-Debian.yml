@@ -1,0 +1,8 @@
+---
+- name: Installing required packages {{ env }} on Debian OS
+  apt:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - openjdk-8-jdk

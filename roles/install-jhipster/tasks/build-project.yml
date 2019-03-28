@@ -1,0 +1,12 @@
+---
+- name: clear local build directory
+  local_action: file path={{jhipster_dir}}/build state=absent
+
+- name: build project
+  local_action: command bash -lc "cd {{jhipster_dir}} && ./gradlew clean -x test -P{{jhipster_profiles}} bootWar"
+
+- name: uploading updated war
+  become: true
+  copy: src={{item}} dest={{java_app_home}}/{{java_app_artifact_id}}.war owner={{java_app_user}} group={{java_app_user}} mode=0777
+  with_fileglob:
+    - "{{jhipster_dir}}/build/libs/*"

@@ -1,0 +1,3 @@
+---
+java_app_user: "{{ ansible_user_id }}"
+java_app_group: "{{ java_app_user }}"

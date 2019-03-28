@@ -1,0 +1,5 @@
+# le nom de l'hôte ou groupe concerné
+---
+- hosts: jhipster
+  roles:
+    - install-jhipster

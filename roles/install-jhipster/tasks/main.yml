@@ -1,0 +1,51 @@
+---
+- name: Include specific Elasticsearch
+  include: install-packages-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include specific Elasticsearch
+  include: install-packages-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: test
+  include: install-packages-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: stop {{java_app_artifact_id}}
+  become: true
+  service:
+    name: "{{java_app_artifact_id}}"
+    state: stopped
+  ignore_errors: yes
+
+- name: Creating jhipster app directory
+  file: name={{item}} state=directory owner={{java_app_user}} group={{java_app_user}}
+  become: true
+  with_items:
+    - "{{java_app_home}}"
+
+- name: Creating jhipster app directory
+  file: name={{item}} state=directory owner={{java_app_user}} group={{java_app_user}} mode=0777
+  become: true
+  with_items:
+    - "{{jhipster_log_dir}}/{{java_app_artifact_id}}"
+
+- name: Copying systemctl script
+  template: src=templates/app.service.j2 dest=/etc/systemd/system/{{java_app_artifact_id}}.service
+  become: true
+
+- name: delete remote war
+  file: path={{java_app_home}}/{{java_app_artifact_id}}.war state=absent
+
+- name: Include specific Elasticsearch
+  include: build-project.yml
+
+- name: reload service
+  become: true
+  command: systemctl daemon-reload
+
+- name: start {{java_app_artifact_id}}
+  become: true
+  service:
+    name: "{{java_app_artifact_id}}"
+    state: started
