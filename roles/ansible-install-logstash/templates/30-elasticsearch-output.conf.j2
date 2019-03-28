@@ -2,13 +2,13 @@ output {
     if([env]){
         elasticsearch {
             hosts => {{ logstash_elasticsearch_hosts | to_json }}
-            index => "%{env}-oss-%{app_name}-%{+YYYY.MM}"
+            index => "%{env}-%{+YYYY.MM}"
         }
     }
     else {
         elasticsearch {
             hosts => {{ logstash_elasticsearch_hosts | to_json }}
-            index => "other-oss-%{app_name}-%{+YYYY.MM}"
+            index => "%{+YYYY.MM}"
         }
     }
 }

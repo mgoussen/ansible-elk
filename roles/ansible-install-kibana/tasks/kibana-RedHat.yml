@@ -24,7 +24,7 @@
   become: true
   service:
     name: kibana
-    state: stoped
+    state: stopped
   ignore_errors: yes
 
 - name: Install Kibana.
