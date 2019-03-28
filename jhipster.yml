@@ -3,3 +3,20 @@
 - hosts: jhipster
   roles:
     - install-jhipster
+    - { role: "ansible-beats", beat: "filebeat",
+        become: true,
+        beat_conf: {
+          "filebeat": {
+            "prospectors":[{
+              "paths":["{{jhipster_log_dir}}/{{java_app_artifact_id}}/json-log.json"],
+              "input_type":"log"
+            }]
+          }
+        },
+        "output_conf": {
+          "logstash": {
+            "hosts": ["{{logstash_ip}}"],
+            "loadbalance": true
+          }
+        }
+    }
