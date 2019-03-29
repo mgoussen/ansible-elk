@@ -5,3 +5,6 @@
     - ansible-install-logstash
   vars:
     service_name: logstash
+    logstash_elasticsearch_hosts:
+      - "{{groups['data_node_1'][0]}}"
+      - "{{groups['data_node_2'][0]}}"

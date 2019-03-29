@@ -1,2 +1,1 @@
 ---
-kibana_elasticsearch_url: http://{{es_api_host_master_node_1}}:9200

@@ -15,7 +15,7 @@
         },
         "output_conf": {
           "logstash": {
-            "hosts": ["{{logstash_ip}}"],
+            "hosts": ["{{groups['logstash'][0]}}:5044"],
             "loadbalance": true
           }
         }
