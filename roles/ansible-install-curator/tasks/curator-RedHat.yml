@@ -1,0 +1,25 @@
+---
+- name: Installing required packages
+  yum:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - java-1.8.0-openjdk
+
+- name: Add Elasticsearch GPG key.
+  become: true
+  rpm_key:
+    key: https://packages.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add Curator repository.
+  become: true
+  copy:
+    src: templates/curator.repo
+    dest: /etc/yum.repos.d/curator.repo
+    mode: 0644
+
+- name: Install curator.
+  become: true
+  yum: pkg=elasticsearch-curator state=installed

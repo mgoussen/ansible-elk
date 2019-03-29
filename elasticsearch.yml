@@ -21,6 +21,12 @@
     es_api_host: "{{groups['master_node_1'][0]}}"
     es_enable_xpack: false
 
+- hosts: master_node_1
+  roles:
+    - ansible-install-curator
+  vars:
+    service_name: curator
+
 - hosts: data_node_1
   roles:
     - elastic.elasticsearch

@@ -1,0 +1,42 @@
+---
+- name: Include specific Elasticsearch
+  include: curator-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include specific Elasticsearch
+  include: curator-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+
+- name: Creates directory for logs
+  file: name={{item}} state=directory owner="{{ansible_user_id}}" group="{{ansible_user_id}}" mode=0750
+  become: true
+  with_items:
+    - "/etc/curator"
+    - "/var/log/curator"
+
+- name: Create curator configuration files.
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/curator/{{ item }}"
+    owner: "{{ansible_user_id}}"
+    group: "{{ansible_user_id}}"
+    mode: 0750
+  with_items:
+    - action_file.yml
+    - curator.yml
+
+- name: Remove cron
+  cron:
+    name: "curator"
+    state: absent
+
+- name: Configure cron jobs for Elasticsearch Curator.
+  cron:
+    name: "curator"
+    job: "/usr/bin/curator --config /etc/curator/curator.yml  /etc/curator/action_file.yml"
+    minute: "00"
+    hour: "00"
+    day: "*"
+    weekday: "*"
+    month: "*"
