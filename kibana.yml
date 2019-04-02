@@ -6,4 +6,4 @@
   vars:
     service_name: kibana
     kibana_hostname: "{{groups['kibana'][0]}}"
-    kibana_elasticsearch_url: "http://{{groups['master_node_1'][0]}}:9200"
+    kibana_elasticsearch_url: "http://{{groups['master_node'][0]}}:9200"
