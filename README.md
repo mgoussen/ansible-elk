@@ -13,6 +13,7 @@ https://www.elastic.co/guide/en/logstash/current/installing-logstash.html
 
 Run deployments :
 ansible-playbook -i environments/elk elk.yml -u elk
+ansible-playbook -i environments/elk jhipster.yml -u elk
 
 ######################################################
 ##                     Important                    ##

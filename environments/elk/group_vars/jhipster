@@ -4,6 +4,6 @@ jhipster_profiles: dev
 
 java_app_artifact_id: jhipster4Elk
 
-jhipster_dir: ../jhipster4ELK
+jhipster_dir: ./jhipster4ELK
 jhipster_log_dir: /var/log
 java_app_home: /usr/share/{{java_app_artifact_id}}
