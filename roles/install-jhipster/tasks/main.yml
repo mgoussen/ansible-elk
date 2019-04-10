@@ -49,3 +49,10 @@
   service:
     name: "{{java_app_artifact_id}}"
     state: started
+    enabled: true
+
+- name: start {{java_app_artifact_id}}
+  become: true
+  service:
+    name: "{{java_app_artifact_id}}"
+    state: started
