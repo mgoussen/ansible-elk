@@ -5,4 +5,4 @@
     - ansible-install-logstash
   vars:
     service_name: logstash
-    logstash_elasticsearch_hosts: "{{groups['data_node']}}"
+    logstash_elasticsearch_hosts: "{{groups['client_node']}}"

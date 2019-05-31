@@ -1,3 +1,4 @@
 ---
 node_data_master_node: false
 node_master_master_node: true
+node_ingest_master_node: false

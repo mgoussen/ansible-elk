@@ -3,20 +3,32 @@
 - hosts: jhipster
   roles:
     - install-jhipster
-    - { role: "ansible-beats", beat: "filebeat",
+    - { role: "elastic.beats", beat: "filebeat",
         become: true,
         beat_conf: {
-          "filebeat": {
-            "prospectors":[{
-              "paths":["{{jhipster_log_dir}}/{{java_app_artifact_id}}/json-log.json"],
-              "input_type":"log"
+          filebeat: {
+            "inputs":[{
+              "type": log,
+              "enabled": true,
+              "paths": ["{{jhipster_log_dir}}/{{java_app_artifact_id}}/json-log.json"]
             }]
           }
         },
+        beats_version: 7.1.0,
         "output_conf": {
           "logstash": {
             "hosts": ["{{groups['logstash'][0]}}:5044"],
             "loadbalance": true
+          }
+        },
+        logging: {
+          level: info,
+          to_files: true,
+          files: {
+            path: /var/log/filebeat,
+            name: filebeat,
+            keepfiles: 7,
+            permissions: 0644
           }
         }
     }

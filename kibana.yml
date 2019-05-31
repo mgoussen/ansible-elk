@@ -5,5 +5,5 @@
     - ansible-install-kibana
   vars:
     service_name: kibana
-    kibana_hostname: "{{groups['kibana'][0]}}"
+    kibana_hostname: "{{inventory_hostname}}"
     kibana_elasticsearch_url: "http://{{groups['master_node'][0]}}:9200"

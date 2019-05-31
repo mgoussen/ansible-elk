@@ -25,6 +25,15 @@ All VMs must have installed :
 
 Otherwise Ansible will not be able to run.
 
+######################################################
+##                    FOR EACH VM                   ##
+######################################################
+ssh [VM_USER]@[VM_IP]
+sudo apt-get install openssh-server python2.7 python-pip
+mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
+exit
+scp ~/.ssh/id_rsa.pub [VM_USER]@[VM_IP]:~/.ssh/authorized_keys
 
 ######################################################
 ##                  Test If running                 ##

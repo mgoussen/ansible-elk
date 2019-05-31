@@ -1,6 +1,6 @@
-[kibana-6.x]
-name=Kibana repository for 6.x packages
-baseurl=https://artifacts.elastic.co/packages/6.x/yum
+[kibana-{{elastic_version}}]
+name=Kibana repository for {{elastic_version}} packages
+baseurl=https://artifacts.elastic.co/packages/oss-{{elastic_version}}/yum
 gpgcheck=1
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
 enabled=1
