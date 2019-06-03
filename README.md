@@ -25,9 +25,9 @@ Git : <br/>
 https://github.com/elastic/ansible-elasticsearch
 
 Run deployments : <br/>
-ansible-playbook -i environments/elk elk.yml -u elk
+ansible-playbook -i environments/elk elk.yml -u [YOUR_USER] --extra-vars "ansible_sudo_pass=[YOUR_PASSWORD]"
 <br/>
-ansible-playbook -i environments/elk jhipster.yml -u elk
+ansible-playbook -i environments/elk jhipster.yml -u [YOUR_USER] --extra-vars "ansible_sudo_pass=[YOUR_PASSWORD]"
 
 
 

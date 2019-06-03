@@ -1,5 +1,4 @@
 ---
 java_version: java-1.8.0-openjdk
 
-ansible_sudo_pass: elk
 elastic_version: 7.x
