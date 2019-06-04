@@ -1,6 +1,6 @@
 ---
 - name: Sent ssh pub key
   authorized_key:
-    user: elk
+    user: {{ ansible_user }}
     state: present
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
