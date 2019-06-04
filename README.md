@@ -19,7 +19,7 @@ scp ~/.ssh/id_rsa.pub [VM_USER]@[VM_IP]:~/.ssh/authorized_keys <br/>
 
 
 # Install elasticsearch playbook :
-ansible-galaxy install git+https://github.com/elastic/ansible-elasticsearch.git,7f5be969e07173c5697432141e909b6ced5a2e94
+ansible-galaxy install elastic.elasticsearch,7.1.1
 
 Git : <br/>
 https://github.com/elastic/ansible-elasticsearch

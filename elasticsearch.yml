@@ -1,7 +1,7 @@
 ---
 - hosts: master_node
   roles:
-    - ansible-elasticsearch
+    - elastic.elasticsearch
   vars:
     es_version: 7.1.0
     es_instance_name: "elmaster"
@@ -31,7 +31,7 @@
 
 - hosts: data_node
   roles:
-    - ansible-elasticsearch
+    - elastic.elasticsearch
   vars:
     es_version: 7.1.0
     es_instance_name: "eldata"
@@ -55,7 +55,7 @@
 
 - hosts: client_node
   roles:
-    - ansible-elasticsearch
+    - elastic.elasticsearch
   vars:
     es_version: 7.1.0
     es_instance_name: "elclient"
