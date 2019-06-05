@@ -3,10 +3,14 @@
 
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <property name="LOG_PATH" value="${logging.path}" />
+    <springProperty scope="context" name="JHI_ENV" source="spring.liquibase.contexts"/>
+    <springProperty scope="context" name="JHI_PORT" source="spring.application.name"/>
+    <springProperty scope="context" name="JHI_APP_NAME" source="server.port"/>
     <appender name="jsonAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>/var/log/jhipster4Elk/json-log.json</File>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"env":"${JHI_ENV}", "app_name":"${JHI_APP_NAME}", "app_port":"${JHI_PORT}"}</customFields>
+        </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <maxIndex>1</maxIndex>
             <fileNamePattern>/var/log/jhipster4Elk/json-log.json.%i</fileNamePattern>
