@@ -32,3 +32,27 @@
           }
         }
     }
+    - { role: "elastic.beats", beat: "metricbeat",
+        become: true,
+        beat_conf: {
+          metricbeat: {
+            modules: [{
+                        "module": system,
+                        "metricsets": ["cpu","load","memory"],
+                        "enabled": true,
+                        "period": 15s,
+                        "processes": ['.*']
+                      }],
+            setup.kibana: {
+              host: "{{groups['kibana'][0]}}:5601"
+            }
+          }
+        },
+        "output_conf": {
+          "elasticsearch": {
+            "hosts": ["{{groups['client_node'][0]}}:9200"]
+          }
+        },
+        beats_version: "7.1.0",
+        beats_major_version: "oss-7.x"
+    }
