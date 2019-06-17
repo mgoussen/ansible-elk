@@ -16,7 +16,7 @@
 - name: Add Kibana repository.
   become: true
   apt_repository:
-    repo: 'deb https://artifacts.elastic.co/packages/oss-{{elastic_version}}/apt stable main'
+    repo: 'deb https://artifacts.elastic.co/packages/oss-{{elastic_major_version}}/apt stable main'
     state: present
     update_cache: true
 

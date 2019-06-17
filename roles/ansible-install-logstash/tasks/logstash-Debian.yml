@@ -16,7 +16,7 @@
 - name: Add logstash repository.
   become: true
   apt_repository:
-    repo: 'deb https://artifacts.elastic.co/packages/{{elastic_version}}/apt stable main'
+    repo: 'deb https://artifacts.elastic.co/packages/{{elastic_major_version}}/apt stable main'
     state: present
     update_cache: true
 

@@ -14,7 +14,7 @@
             }]
           }
         },
-        beats_version: 7.1.0,
+        beats_version: "{{elastic_version}}",
         "output_conf": {
           "logstash": {
             "hosts": ["{{groups['logstash'][0]}}:5044"],
@@ -53,6 +53,6 @@
             "hosts": ["{{groups['client_node'][0]}}:9200"]
           }
         },
-        beats_version: "7.1.0",
-        beats_major_version: "oss-7.x"
+        beats_version: "{{elastic_version}}",
+        beats_major_version: "oss-{{elastic_major_version}}"
     }

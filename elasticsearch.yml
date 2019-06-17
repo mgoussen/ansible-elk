@@ -3,7 +3,7 @@
   roles:
     - elastic.elasticsearch
   vars:
-    es_version: 7.1.0
+    es_version: {{elastic_version}}
     es_instance_name: "elmaster"
     es_heap_size: "1g"
     es_config:
@@ -33,7 +33,7 @@
   roles:
     - elastic.elasticsearch
   vars:
-    es_version: 7.1.0
+    es_version: {{elastic_version}}
     es_instance_name: "eldata"
     es_heap_size: "1g"
     es_config:
@@ -57,7 +57,7 @@
   roles:
     - elastic.elasticsearch
   vars:
-    es_version: 7.1.0
+    es_version: {{elastic_version}}
     es_instance_name: "elclient"
     es_heap_size: "1g"
     es_config:
