@@ -1,5 +1,11 @@
 ---
 java_version: java-1.8.0-openjdk
 
-elastic_major_version: 7.x
-elastic_version: 7.1.0
+token: "{{ lookup('env','VAULT_ROOT_TOKEN_ID') }}"
+vault_addr: "{{ lookup('env','VAULT_ADDR') }}"
+ansible_user: "{{ lookup('hashi_vault', 'secret=secret4elk/elk:ansible_user token={{ token }} url={{ vault_addr }}')}}"
+ansible_sudo_pass: "{{ lookup('hashi_vault', 'secret=secret4elk/elk:ansible_sudo_pass token={{ token }} url={{ vault_addr }}')}}"
+ansible_ssh_pass: "{{ lookup('hashi_vault', 'secret=secret4elk/elk:ansible_ssh_pass token={{ token }} url={{ vault_addr }}')}}"
+
+elastic_major_version: "{{ lookup('hashi_vault', 'secret=secret4elk/elk:elastic_major_version token={{ token }} url={{ vault_addr }}')}}"
+elastic_version: "{{ lookup('hashi_vault', 'secret=secret4elk/elk:elastic_version token={{ token }} url={{ vault_addr }}')}}"
