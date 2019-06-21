@@ -1,0 +1,19 @@
+image: ansible/centos7-ansible:stable
+
+stages:
+    - deploy
+
+deploy:
+    stage: deploy
+    tags: ["docker"]
+    before_script:
+        # install stuff
+        - yum install openssh-server sshpass -y
+        - ansible-galaxy install elastic.beats
+        - ansible-galaxy install elastic.elasticsearch,7.1.1
+        - pip install hvac
+        - pip install "hvac[parser]"
+        - export ANSIBLE_HOST_KEY_CHECKING=False
+    script:
+        - ansible-playbook -i environments/elk jhipster.yml
+    when: manual
