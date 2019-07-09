@@ -1,0 +1,89 @@
+$script = <<-SCRIPT
+    # Set up sudo
+    echo vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant
+    chmod 0440 /etc/sudoers.d/vagrant
+    # Setup sudo to allow no-password sudo for "sudo"
+    usermod -a -G sudo vagrant
+
+    sudo apt-get update
+    sudo apt-get install -y openssh-server python2.7 python-pip net-tools
+    mkdir -p ~/.ssh && touch ~/.ssh/authorized_keys
+    chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
+SCRIPT
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "debian/stretch64"
+    config.vm.provision "shell", inline: $script
+    config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~vagrant/.ssh/me.pub"
+    config.vm.provision "shell", inline: "cat ~vagrant/.ssh/me.pub >> ~vagrant/.ssh/authorized_keys"
+
+    config.vm.define "elkmaster", primary: true do |my_vm|
+        my_vm.vm.hostname = 'elkmaster'
+        my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.10"
+        my_vm.vm.provider "virtualbox" do |v|
+            v.name = "elkmaster"
+            v.memory = 1024
+            v.cpus = 1
+        end
+    end
+
+    config.vm.define "elkclient", primary: true do |my_vm|
+        my_vm.vm.hostname = 'elkclient'
+        my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.11"
+        my_vm.vm.provider "virtualbox" do |v|
+            v.name = "elkclient"
+            v.memory = 1024
+            v.cpus = 1
+        end
+    end
+
+    config.vm.define "elkdata1", primary: true do |my_vm|
+        my_vm.vm.hostname = 'elkdata1'
+        my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.12"
+        my_vm.vm.provider "virtualbox" do |v|
+            v.name = "elkdata1"
+            v.memory = 1024
+            v.cpus = 1
+        end
+    end
+
+    config.vm.define "elkdata2", primary: true do |my_vm|
+        my_vm.vm.hostname = 'elkdata2'
+        my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.13"
+        my_vm.vm.provider "virtualbox" do |v|
+            v.name = "elkdata2"
+            v.memory = 1024
+            v.cpus = 1
+        end
+    end
+
+    config.vm.define "elkkibana", primary: true do |my_vm|
+        my_vm.vm.hostname = 'elkkibana'
+        my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.14"
+        my_vm.vm.provider "virtualbox" do |v|
+            v.name = "elkkibana"
+            v.memory = 1024
+            v.cpus = 1
+        end
+    end
+
+     config.vm.define "elklogstash", primary: true do |my_vm|
+         my_vm.vm.hostname = 'elklogstash'
+         my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.15"
+         my_vm.vm.provider "virtualbox" do |v|
+             v.name = "elklogstash"
+             v.memory = 1024
+             v.cpus = 1
+         end
+     end
+
+    config.vm.define "elkjhipster", primary: true do |my_vm|
+        my_vm.vm.hostname = 'elkjhipster'
+        my_vm.vm.network "public_network", bridge: "en9: USB 10/100/1000 LAN", ip:"192.168.1.16"
+        my_vm.vm.provider "virtualbox" do |v|
+            v.name = "elkjhipster"
+            v.memory = 1024
+            v.cpus = 1
+        end
+    end
+end

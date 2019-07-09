@@ -29,4 +29,6 @@
 
 - name: Install Kibana.
   become: yes
-  apt: name=kibana-oss state=present
+  apt:
+    name: kibana-oss={{elastic_version}}
+    state: present

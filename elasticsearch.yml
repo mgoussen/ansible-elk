@@ -3,7 +3,7 @@
   roles:
     - elastic.elasticsearch
   vars:
-    es_version: {{elastic_version}}
+    es_version: "{{ elastic_version }}"
     es_instance_name: "elmaster"
     es_heap_size: "1g"
     es_config:
@@ -17,7 +17,7 @@
       node.master: true
       node.ingest: false
       bootstrap.memory_lock: false
-      network.host: _enp0s3_
+      network.host: _eth1_
     es_api_host: "{{inventory_hostname}}"
     es_enable_xpack: false
     es_templates: false
@@ -33,7 +33,7 @@
   roles:
     - elastic.elasticsearch
   vars:
-    es_version: {{elastic_version}}
+    es_version: "{{ elastic_version }}"
     es_instance_name: "eldata"
     es_heap_size: "1g"
     es_config:
@@ -47,7 +47,7 @@
       node.master: false
       node.ingest: false
       bootstrap.memory_lock: false
-      network.host: _enp0s3_
+      network.host: _eth1_
     es_api_host: "{{inventory_hostname}}"
     es_enable_xpack: false
     es_templates: false
@@ -57,7 +57,7 @@
   roles:
     - elastic.elasticsearch
   vars:
-    es_version: {{elastic_version}}
+    es_version: "{{ elastic_version }}"
     es_instance_name: "elclient"
     es_heap_size: "1g"
     es_config:
@@ -71,7 +71,7 @@
       node.master: false
       node.ingest: true
       bootstrap.memory_lock: false
-      network.host: _enp0s3_
+      network.host: _eth1_
     es_api_host: "{{inventory_hostname}}"
     es_enable_xpack: false
     es_templates: false

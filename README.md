@@ -29,14 +29,12 @@ ansible-playbook -i environments/elk elk.yml -u [YOUR_USER] --extra-vars "ansibl
 <br/>
 ansible-playbook -i environments/elk jhipster.yml -u [YOUR_USER] --extra-vars "ansible_sudo_pass=[YOUR_PASSWORD]"
 
-
-
-
-
-
 # Check if running
 Elasticsearch node master : <br/>
 http://[URL_NODE_MASTER]:9200/
 
 Kibana : <br/>
 http://[URL_KIBANA]:5601
+
+# Deploy infra locally with vagrant
+vagrant up
